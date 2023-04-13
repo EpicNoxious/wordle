@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Main</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <script defer src="{% static 'js/index.js' %}"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--  -->
+    <link rel="icon" href="{% static 'public/favicon.ico' %}" />
+    <title>Wordle</title>
+  </head>
+
+  <body>
+    <!--navigation-->
+    {% include 'navbar.html' %}
+    <!--content of a web page-->
+    {%block content %} {% if messages %} {% for message in messages %}
+    <div class="alert alert--{{ message.tags }}">
+      <span class="alert_message">{{ message }}</span>
+      <button class="alert__close">X</button>
+    </div>
+    {% endfor %} {% endif %} {% endblock content %}
+
+    <!--footer-->
+    {% include 'footer.html' %}
+  </body>
+</html>
