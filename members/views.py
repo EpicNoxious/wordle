@@ -1,43 +1,10 @@
-from django.shortcuts import render
-from django.views import generic
-from django.urls import reverse_lazy, reverse
-from .forms import CustomUserCreationForm, CustomUserLoginForm
+from django.http import HttpResponse
+from .forms import CustomUserCreationForm, CustomUserLoginForm, ProfileForm
+from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.models import User
-
-
-# Create your views here.
-def loginUser(request):
-  page = 'login'
-  form = CustomUserLoginForm()
-  if request.method == 'POST':
-    form = CustomUserLoginForm(data=request.POST)
-    username = request.POST.get('username')
-    password = request.POST.get('password')
-    
-    try:
-      user = User.objects.get(username=username)
-    except:
-      messages.error(request, 'User does not exist')
-    
-    if form.is_valid():
-      user = form.get_user()
-      if user is not None:
-        login(request, user)
-        messages.error(request, 'user has logged in')
-        return redirect('index')
-      else:
-        messages.error(request, 'username or password is incorrect')
-      # login(request, user)
-      # messages.success(request, "User logged in")
-      # return redirect('index')
-    else:
-      form = CustomUserLoginForm()
-  context = {'page': page, 'form': form}
-  return render(request, 'signupin.html', context)
+from django.contrib.auth.decorators import login_required
 
 
 def loginUser(request):
@@ -52,20 +19,12 @@ def loginUser(request):
       user = User.objects.get(username=username)
     except:
       messages.error(request, 'User does not exist')
-    
-    if form.is_valid():
-      user = form.get_user()
-      if user is not None:
-        login(request, user)
-        messages.error(request, 'user has logged in')
-        return redirect('index')
-      else:
-        messages.error(request, 'username or password is incorrect')
-      # login(request, user)
-      # messages.success(request, "User logged in")
-      # return redirect('index')
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+      login(request, user)
+      return redirect('profile')
     else:
-      form = CustomUserLoginForm()
+      messages.error(request, 'username or password is incorrect')
   context = {'page': page, 'form': form}
   return render(request, 'signupin.html', context)
 
@@ -73,7 +32,7 @@ def loginUser(request):
 def logoutUser(request):
   logout(request)
   messages.info(request, 'user was logged out')
-  return redirect('index')
+  return redirect('login')
 
 
 def registerUser(request):
@@ -82,13 +41,41 @@ def registerUser(request):
   if request.method == 'POST':
     form = CustomUserCreationForm(request.POST)
     if form.is_valid():
-      user = form.save(commit=True)
-      
+      user = form.save(commit=False)
+      user.username = user.username.lower()
+      user.save()
       messages.success(request, 'User account was created!')
-
-      login(request, user)
       return redirect('login')
     else:
       messages.error(request, 'An error occurred during registeration')
   context = {'page': page, 'form': form}
   return render(request, 'signupin.html', context)
+
+
+def userProfile(request):
+  if request.user.is_authenticated:
+    profile = request.user.profile
+    context = {'profile': profile}
+    return render(request, 'profile.html', context)
+  else:
+    messages.info(request, 'You must be logged in to access this page')
+    return redirect('login')
+
+
+
+def editProfile(request):
+  if request.user.is_authenticated: 
+    profile = request.user.profile
+    form = ProfileForm(instance=profile)
+    if request.method == 'POST':
+      form = ProfileForm(request.POST, instance=profile)
+      if form.is_valid():
+        form.save()
+        return redirect('profile')
+
+    context = {'form': form}
+    return render(request, 'profile_form.html', context)
+  else: 
+    messages.info(request, 'You must be logged in to access this page')
+    return redirect('login')
+

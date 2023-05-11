@@ -1,0 +1,54 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-rendering: optimizeLegibility;
+  cursor: default;
+}
+
+html,
+body {
+  user-select: none;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+  background-color: white;
+  position: relative;
+  color: black;
+  font-family: "Monteral-T";
+}
+
+h1 {
+  font-size: 6vw;
+  font-size: 1000;
+  font-family: "Moresby";
+  text-transform: capitalize;
+}
+p {
+  font-size: 1.6vw;
+  text-align: justify;
+}
+
+main {
+  position: relative;
+}
+
+.alert {
+  position: fixed;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  &--error {
+    color: red;
+  }
+  &--success {
+    color: green;
+  }
+  & .alert_message {
+    font-weight: bold;
+    font-size: 1.2vw;
+    font-weight: 100;
+    text-transform: capitalize;
+  }
+}

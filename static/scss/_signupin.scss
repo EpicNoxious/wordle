@@ -1,0 +1,89 @@
+.signupin {
+  height: 100vh;
+  width: 100%;
+  padding: 5vw;
+  &-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 5vw;
+  }
+  .signupin__heading {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    justify-content: center;
+    flex: 50%;
+    flex-direction: column;
+    &--sub {
+      font-size: 1.2vw;
+      text-transform: uppercase;
+      font-weight: 1000;
+    }
+    &--main {
+      font-size: 6.4vw;
+      font-family: "Moresby";
+      text-transform: capitalize;
+      margin-top: 1vh;
+    }
+    &--salute {
+      margin: 3vh 0;
+    }
+  }
+}
+.forms {
+  width: 50%;
+}
+.form--field-embed {
+  margin-bottom: 3vh;
+}
+
+.form--label {
+  font-size: 1.2vw;
+  font-weight: 1000;
+  text-transform: capitalize;
+  margin-left: 2vh;
+}
+
+input,
+textarea {
+  margin-top: 1vh;
+  display: block;
+  width: 100%;
+  height: 5vh;
+  border: 2px solid black;
+  border-radius: 20px;
+  outline: none;
+  padding: 1vh 2vh;
+  font-size: 1vw;
+}
+textarea {
+  height: 20vh;
+  resize: none;
+  font-family: "Monteral-T";
+  font-size: 1vw;
+  font-weight: 1000;
+}
+
+.action-btn {
+  padding: 1vh 2vh;
+  font-size: 1.2vw;
+  border-radius: 20px;
+  outline: 0;
+  border: 2px solid black;
+  background-color: white;
+  transition: all 0.3s ease-in-out;
+  margin-bottom: 1vh;
+  &:hover {
+    color: white;
+    background-color: black;
+    border: 2px solid white;
+  }
+}
+.form--switch {
+  a {
+    color: black;
+    cursor: pointer;
+  }
+}

@@ -7,12 +7,12 @@
   This is game.html file if you are seeing this it means you are authenticated
   {{ score.score }}
 </h1>
-<form method="post">
+<form method="POST" data-swup-form>
   {% csrf_token %}
-  <button type="submit">Submit</button>
+  <input type="submit" value="Submit" />
+  {% else %}
+  <h1>To play the game you need to login first.</h1>
+  {% endif %}
+  <!--  -->
+  {% endblock %}
 </form>
-{% else %}
-<h1>To play the game you need to login first.</h1>
-{% endif %}
-<!--  -->
-{% endblock %}

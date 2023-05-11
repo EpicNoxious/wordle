@@ -1,0 +1,61 @@
+nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 3vh 3vw;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  .logo {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 5px;
+    cursor: pointer;
+    width: auto;
+    span:nth-of-type(1) {
+      width: 10px;
+      height: 7vh;
+      background-color: black;
+      cursor: pointer;
+    }
+    span:nth-of-type(2) {
+      width: 10px;
+      height: 5vh;
+      background-color: black;
+      cursor: pointer;
+    }
+  }
+  div {
+    width: 33.33%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+.hover-anchor {
+  text-decoration: none;
+  color: black;
+  font-family: "Monteral-T";
+  position: relative;
+  cursor: pointer;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    color: black;
+    width: 0;
+    transition: all 0.3s ease-in-out;
+    transform-origin: left;
+    border-bottom: 2px solid black;
+  }
+  &:hover {
+    &::after {
+      width: 100%;
+    }
+  }
+}

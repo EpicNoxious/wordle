@@ -1,0 +1,40 @@
+{% extends 'main.html' %} {% block content %}
+
+<!-- Main Section -->
+<section class="signupin">
+  <div class="signupin-container">
+    <div class="signupin__heading">
+      <h4 class="signupin__heading--sub">Edit Your</h4>
+      <h2 class="signupin__heading--main">Profile</h2>
+      <p class="signupin__heading--salute">
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magni qui quia
+        voluptatem blanptatibus omnis nemo sequi commodi id totam adipisci.
+      </p>
+    </div>
+    <div class="forms">
+      <form
+        method="POST"
+        class="form"
+        enctype="multipart/form-data"
+        data-swup-form
+      >
+        {% csrf_token %} {% for field in form %}
+        <div class="form--field">
+          <div class="form--field-embed">
+            <label class="form--label">{{field.label}}</label>
+            {{field}}
+          </div>
+        </div>
+        {% for error in field.errors %}
+        <span style="color: red" class="field--errors">{{error}}</span>
+        {% endfor %} {% endfor %}
+
+        <span class="btn--wrapper">
+          <button class="action-btn" type="submit">Edit Profile</button>
+        </span>
+      </form>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

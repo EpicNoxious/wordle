@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-m+9fe0=hh#ri)ez@2y2lmt_sftvx62j%x2yfddrt1)@tfs5fat
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app', '.now.sh', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'livereload',
     'django.contrib.staticfiles',
+    'widget_tweaks',
     'project',
     'members',
 ]
@@ -50,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'livereload.middleware.LiveReloadScript',
 ]
 
 ROOT_URLCONF = 'wordle.urls'
@@ -79,16 +82,23 @@ WSGI_APPLICATION = 'wordle.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'A1qWF9ZFVNi3E4qhbraz',
-        'HOST': 'containers-us-west-47.railway.app',
-        'PORT': '5524',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'railway',
+#         'USER': 'postgres',
+#         'PASSWORD': 'A1qWF9ZFVNi3E4qhbraz',
+#         'HOST': 'containers-us-west-47.railway.app',
+#         'PORT': '5524',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -137,14 +147,16 @@ EMAIL_HOST_PASSWORD = 'geymlajpkvjnnhuk'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATIC_URL = '/static/'
-# MEDIA_URL = '/images/'
+MEDIA_URL = '/images/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'game/build/static'),
-    # os.path.join(BASE_DIR, 'static'),
-]
-
+STATICFILES_DIRS = os.path.join(BASE_DIR,'static'),
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
-
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'images')
+
+
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
+
+CSRF_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SECURE = True

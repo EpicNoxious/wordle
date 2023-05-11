@@ -1,5 +1,7 @@
 {% extends 'main.html' %}
 <!--  -->
+{%load widget_tweaks %}
+<!--  -->
 {% block title %} {{ page }} {% endblock %} {% block content %}
 
 <section class="signupin">
@@ -13,24 +15,24 @@
       </p>
     </div>
     <!-- Sign Up Form -->
+
     <div class="forms">
       {% if page == 'register' %}
-      <form method="POST" class="form">
-        {% csrf_token %} {% for field in form %}
+      <form method="POST" class="form" autocomplete="off" data-swup-form>
+        {% csrf_token %}
+        <!--  -->
+        {% for field in form %}
         <div class="form--field">
           <div class="form--field-embed">
             <label class="form--label">{{field.label}}</label>
-
-            {{field}}
+            {% render_field field %}
           </div>
         </div>
         {% for error in field.errors %}
         <span style="color: red" class="field--errors">{{error}}</span>
         {% endfor %} {% endfor %}
 
-        <span class="btn--wrapper">
-          <button class="action-btn" type="submit">Register</button>
-        </span>
+        <button class="action-btn" type="submit">Register</button>
         <div class="form--switch">
           Already have an account? <a href="{% url 'login' %}">Sign In</a>
         </div>
@@ -38,22 +40,26 @@
 
       {% else %}
       <!-- Sign In Form -->
-      <form method="POST" class="form">
+
+      <form
+        method="POST"
+        class="form"
+        id="login"
+        autocompletete="off"
+        data-swup-form
+      >
         {% csrf_token %} {% for field in form %}
         <div class="form--field">
           <div class="form--field-embed">
             <label class="form--label">{{field.label}}</label>
-
-            {{field}}
+            {% render_field field class="" %}
           </div>
         </div>
         {% for error in field.errors %}
         <span style="color: red" class="field--errors">{{error}}</span>
         {% endfor %} {% endfor %}
         <!--  -->
-        <span class="btn--wrapper">
-          <button class="action-btn" type="submit">Login</button>
-        </span>
+        <button class="action-btn" type="submit">Login</button>
         <div class="form--switch">
           Don't have an account? <a href="{% url 'register' %}">Sign Up</a>
         </div>
