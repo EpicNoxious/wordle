@@ -43,7 +43,7 @@
     justify-content: center;
     display: flex;
     position: relative;
-    div:nth-of-type(1) {
+    .sample1 {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -54,7 +54,7 @@
       background-color: white;
       z-index: 2;
     }
-    div:nth-of-type(2) {
+    .sample2 {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -64,6 +64,71 @@
       width: 20vw;
       background-color: white;
       z-index: 3;
+    }
+  }
+}
+.img-box {
+  width: 20vw;
+  height: 50vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  &:nth-of-type(1) {
+    transform: translate(-50%, -50%) rotate(7deg);
+  }
+
+  &:nth-of-type(2) {
+    transform: translate(-50%, -50%) rotate(-7deg);
+  }
+  &:nth-of-type(3) {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  &-container {
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    gap: 0px;
+    background-color: white;
+    text-transform: capitalize;
+    border: 2px solid black;
+    overflow: hidden;
+    .img {
+      height: 85%;
+      overflow: hidden;
+      position: relative;
+      &-dot {
+        height: 50vh;
+        width: 20vw;
+        background-image: radial-gradient(#000 10%, transparent 20%),
+          radial-gradient(#000 10%, transparent 20%);
+        background-position: 0 0, 10px 10px;
+        background-size: 5px 5px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      img {
+        height: 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    }
+    .img-content {
+      font-size: 1.2vw;
+      font-weight: 1000;
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 15%;
+      font-family: "Moresby";
     }
   }
 }

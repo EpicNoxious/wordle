@@ -24,6 +24,7 @@
     <script defer src="{% static 'js/trail.js' %}"></script>
     <script defer src="{% static 'js/lenis.js' %}"></script>
     <script defer src="{% static 'js/swup.js' %}"></script>
+    <script defer src="{% static 'js/zindex.js' %}"></script>
   </head>
 
   <body data-barba="wrapper" data-scroll-container id="scroll-container">
@@ -60,15 +61,6 @@
     <div class="circle"></div>
     <div class="circle"></div>
     <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-
     <!-- page-tranisiton -->
     <ul class="transition">
       <li class="list1"></li>
@@ -81,7 +73,6 @@
       {% if messages %} {% for message in messages %}
       <div class="alert alert--{{ message.tags }}">
         <span class="alert_message">{{ message }}</span>
-        <button class="alert__close">X</button>
       </div>
       {% endfor %} {% endif %} {%block content %}
       <!--  -->

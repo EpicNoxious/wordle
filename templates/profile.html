@@ -5,13 +5,19 @@
 <section class="profile">
   <div class="profile-left">
     <div>
-      <h1>profile page</h1>
+      <h1>
+        <div class="overflow">
+          <div class="transition1">your</div>
+          <div class="transition1">profile</div>
+        </div>
+      </h1>
       <p><strong>User: </strong> {{profile.user}}</p>
       <p><strong>Username: </strong> {{profile.username}}</p>
       <p><strong>Name: </strong> {{profile.name}}</p>
       <p><strong>Email: </strong> {{profile.email}}</p>
       <p><strong>Bio: </strong> {{profile.bio}}</p>
       <p><strong>Created: </strong> {{profile.created}}</p>
+      <p><strong>Highscore: </strong> {{score.highscore}} streak</p>
     </div>
     <br />
     <div>
@@ -21,8 +27,8 @@
     </div>
   </div>
   <div class="profile-right">
-    <div></div>
-    <div></div>
+    <div class="sample1"></div>
+    <div class="sample2"></div>
   </div>
 </section>
 

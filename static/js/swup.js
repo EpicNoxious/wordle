@@ -64,6 +64,16 @@ revealAnimation = () => {
   });
 };
 
+refreshAnimation = () => {
+  gsap.to(".transition1", {
+    y: 0,
+    duration: 1,
+    delay: 0.75,
+    ease: "power4.out",
+    stagger: 0.05,
+  });
+};
+
 // page transition
 const pageTransition = [
   {
@@ -73,13 +83,12 @@ const pageTransition = [
       gsap.to(".transition1", {
         y: 0,
         duration: 1,
-        delay: 0.5,
+        delay: 0.75,
         ease: "power4.out",
         stagger: 0.05,
       });
     },
     out: (next, infos) => {
-      // document.querySelector("#swup").style.opacity = 1;
       gsap.to(document.querySelector("#swup"), 1, {
         onComplete: next,
       });
@@ -113,14 +122,27 @@ const swup = new Swup({
   containers: ["#swup"],
   plugins: [new SwupJsPlugin(pageTransition), new SwupFormsPlugin()],
 });
-// revealAnimation();
+revealAnimation();
+refreshAnimation();
 
-// let alertWrapper = document.querySelector(".alert");
-// let alertClose = document.querySelector(".alert__close");
+document.addEventListener("swup:contentReplaced", () => {
+  const pictureLib = document.querySelector(".picture-lib");
+  const pictures = document.querySelectorAll(".img-box");
+  let alertWrapper = document.querySelector(".alert");
+  // increment z-index of images
+  if (pictureLib) {
+    let currentLastIndex = 2;
+    let zIndexPicture = 5;
+    pictureLib.addEventListener("click", () => {
+      currentLastIndex = (currentLastIndex + 1) % 3;
+      pictures[currentLastIndex].style.zIndex = ++zIndexPicture;
+    });
+  }
 
-// if (alertWrapper) {
-//   alertClose.addEventListener(
-//     "click",
-//     () => (alertWrapper.style.display = "none")
-//   );
-// }
+  // make messages disappear
+  if (alertWrapper) {
+    setTimeout(function () {
+      alertWrapper.style.display = "none";
+    }, 3000);
+  }
+});

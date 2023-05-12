@@ -21,6 +21,7 @@ def loginUser(request):
       messages.error(request, 'User does not exist')
     user = authenticate(request, username=username, password=password)
     if user is not None:
+      messages.success(request, 'User logged in successfully')
       login(request, user)
       return redirect('profile')
     else:
@@ -55,7 +56,8 @@ def registerUser(request):
 def userProfile(request):
   if request.user.is_authenticated:
     profile = request.user.profile
-    context = {'profile': profile}
+    score = profile.score
+    context = {'profile': profile, 'score': score}
     return render(request, 'profile.html', context)
   else:
     messages.info(request, 'You must be logged in to access this page')
@@ -71,6 +73,7 @@ def editProfile(request):
       form = ProfileForm(request.POST, instance=profile)
       if form.is_valid():
         form.save()
+        messages.success(request, 'Profile updated successfully')
         return redirect('profile')
 
     context = {'form': form}
