@@ -47,23 +47,63 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-60%, -50%);
-      border: 2px solid black;
+      transform: translateX(-100%) translateY(200%);
       height: 50vh;
       width: 20vw;
-      background-color: white;
       z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      a {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-weight: 1000;
+        font-size: 2vw;
+        font-family: "Monteral-T";
+        color: white;
+        text-decoration: none;
+      }
+      img {
+        width: 15vw;
+        height: 15vw;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: 5vw;
+      }
     }
     .sample2 {
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-20%, -30%);
-      border: 2px solid black;
+      transform: translateX(-10%) translateY(200%);
       height: 50vh;
       width: 20vw;
-      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       z-index: 3;
+      a {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-weight: 1000;
+        font-size: 2vw;
+        font-family: "Monteral-T";
+        color: white;
+        text-decoration: none;
+      }
+      img {
+        width: 25vw;
+        height: 25vw;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 200%;
+        border-radius: 25vw;
+      }
     }
   }
 }
@@ -73,7 +113,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-
+  overflow: hidden;
   &:nth-of-type(1) {
     transform: translate(-50%, -50%) rotate(7deg);
   }
@@ -93,9 +133,11 @@
     width: 100%;
     gap: 0px;
     background-color: white;
-    text-transform: capitalize;
     border: 2px solid black;
+
+    text-transform: capitalize;
     overflow: hidden;
+    transform: translateY(100%);
     .img {
       height: 85%;
       overflow: hidden;
@@ -114,6 +156,8 @@
       }
       img {
         height: 100%;
+        width: 100%;
+        background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
       }
