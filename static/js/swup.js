@@ -129,31 +129,31 @@ const pageTransition = [
         ease: "power4.out",
       });
     },
-    // out: (next, infos) => {
-    //   gsap.to(document.querySelector("#swup"), 1, {
-    //     onComplete: next,
-    //   });
-    //   gsap.set(".transition", {
-    //     zIndex: 10000,
-    //   });
-    //   gsap.to(".transition li", {
-    //     duration: 1,
-    //     scaleY: 1,
-    //     ease: "power4.inOut",
-    //   });
+    out: (next, infos) => {
+      gsap.to(document.querySelector("#swup"), 1, {
+        onComplete: next,
+      });
+      gsap.set(".transition", {
+        zIndex: 10000,
+      });
+      gsap.to(".transition li", {
+        duration: 1,
+        scaleY: 1,
+        ease: "power4.inOut",
+      });
 
-    //   gsap.to(".transition li", {
-    //     duration: 1,
-    //     scaleY: 0,
-    //     delay: 1,
-    //     ease: "power4.inOut",
-    //   });
+      gsap.to(".transition li", {
+        duration: 1,
+        scaleY: 0,
+        delay: 1,
+        ease: "power4.inOut",
+      });
 
-    //   gsap.set(".transition", {
-    //     zIndex: -1,
-    //     delay: 2,
-    //   });
-    // },
+      gsap.set(".transition", {
+        zIndex: -1,
+        delay: 2,
+      });
+    },
   },
 ];
 
@@ -163,8 +163,8 @@ const swup = new Swup({
   containers: ["#swup"],
   plugins: [new SwupJsPlugin(pageTransition), new SwupFormsPlugin()],
 });
-// revealAnimation();
-// refreshAnimation();
+revealAnimation();
+refreshAnimation();
 
 document.addEventListener("swup:contentReplaced", () => {
   const pictureLib = document.querySelector(".picture-lib");
