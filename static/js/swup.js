@@ -74,6 +74,44 @@ refreshAnimation = () => {
     ease: "power4.out",
     stagger: 0.05,
   });
+  gsap.to(".img-box-container", {
+    y: 0,
+    duration: 1.5,
+    delay: 0.75,
+    ease: "power4.out",
+    stagger: 0.2,
+  });
+  gsap.to(".sample1", {
+    y: "-60%",
+    duration: 2,
+    delay: 1,
+    ease: "power4.out",
+  });
+  gsap.to(".sample2", {
+    y: "-30%",
+    duration: 2.5,
+    delay: 0.75,
+    ease: "power4.out",
+  });
+  gsap.to(".highest", {
+    x: "0",
+    duration: 1.5,
+    delay: 0.75,
+    ease: "power4.out",
+  });
+  gsap.to(".last-create", {
+    x: "0",
+    duration: 1.5,
+    delay: 0.8,
+    ease: "power4.out",
+  });
+  gsap.to(".overflow-2 p", {
+    y: "0",
+    duration: 1,
+    delay: 1.5,
+    stagger: 0.1,
+    ease: "power4.out",
+  });
 };
 
 // page transition
