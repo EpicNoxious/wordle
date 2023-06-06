@@ -580,7 +580,8 @@ nav div {
 .img-box-container .img-dot {
   height: 50vh;
   width: 20vw;
-  background-image: radial-gradient(#000 10%, transparent 20%), radial-gradient(#000 10%, transparent 20%);
+  background-image: radial-gradient(#000 10%, transparent 20%),
+    radial-gradient(#000 10%, transparent 20%);
   background-position: 0 0, 10px 10px;
   background-size: 5px 5px;
   position: absolute;

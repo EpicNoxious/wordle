@@ -32,6 +32,6 @@ def wordleView(request):
       # return redirect('wordle')
   context = {'score': score}
   
-  return render(request, 'game.html', context)
+  return render(request, 'index.html', context)
 
 
